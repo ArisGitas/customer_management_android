@@ -12,8 +12,11 @@ import androidx.annotation.NonNull;
 import java.util.List;
 
 public class CustomerAdapter extends ArrayAdapter<Customer> {
+    private List<Customer> customers;
+
     public CustomerAdapter(Context context, List<Customer> customers) {
         super(context, 0, customers);
+        this.customers = customers;
     }
 
     @NonNull
@@ -31,5 +34,11 @@ public class CustomerAdapter extends ArrayAdapter<Customer> {
         phoneTextView.setText(customer.getPhoneNumber());
 
         return convertView;
+    }
+
+    public void updateList(List<Customer> newCustomers) {
+        customers.clear();
+        customers.addAll(newCustomers);
+        notifyDataSetChanged();
     }
 }
